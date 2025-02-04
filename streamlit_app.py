@@ -6,6 +6,27 @@ st.title("🎈 Data Editor Test")
 #    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
 #)
 
+st.markdown("""
+<style>
+    .data_table {
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+        width:100%;
+    }
+    .data_table td, .data_table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .data_table th {
+        background-color: #f2f2f2;
+    }
+    .data_table tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+""", unsfe_allow_html=True)
+
 if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42], 'status':[False, False, False]})
 if 'edit_index' not in st.session_state:
