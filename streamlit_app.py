@@ -29,7 +29,7 @@ if st.session_state.edit_index is not None:
         st.header("Edit Entry")
         name = st.text_input("Name", value = row['Name'])
         age = st.number_input("Age", value = row['Age'])
-        status = st.checkbox("Status", value = row['status'])
+        status = st.checkbox("Status", value = row['status'], disabled=row['status'])
 
         col1, col2 = st.columns(2)
         if col1.form_submit_button('Save'):
