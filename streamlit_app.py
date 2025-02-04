@@ -12,7 +12,7 @@ if 'edit_index' not in st.session_state:
     st.session_state.edit_index = None
 
 for index, row in st.session_state.df.iterrows():
-    cols = st.columns([3, 2, 3, 2, 2])
+    cols = st.columns([5,3,4,3,3])
     cols[0].write(row['Name'])
     cols[1].write(str(row['Age']))
     cols[2].write(row['status'])
