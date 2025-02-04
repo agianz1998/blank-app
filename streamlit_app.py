@@ -15,7 +15,7 @@ for index, row in st.session_state.df.iterrows():
     cols = st.columns([3, 2, 3, 2])
     cols[0].write(row['Name'])
     cols[1].write(str(row['Age']))
-#    cols[2].write(row['status'])
+    cols[2].write(row['status'])
     if cols[3].button('Edit', key=f"edit_{index}"):
         st.session_state.edit_index = index
 
