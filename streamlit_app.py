@@ -25,7 +25,7 @@ st.markdown("""
         background-color: #f5f5f5;
     }
 </style>
-""", unsfe_allow_html=True)
+""", unsafe_allow_html=True)
 
 if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42], 'status':[False, False, False]})
