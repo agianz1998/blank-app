@@ -33,11 +33,11 @@ if st.session_state.edit_index is not None:
             st.session_state.df.at[index, 'Name'] = name
             st.session_state.df.at[index, 'age'] = age
             st.session_state.edit_index = None
-            st.experimental_rerun()
+            st.rerun()
 
         if col2.form_submit_button('Cancel'):
             st.session_state.edit_index = None
-            st.experimental_rerun()
+            st.rerun()
 
 st.divider()
 st.header("Currrent Data")
