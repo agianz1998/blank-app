@@ -1,20 +1,22 @@
 import streamlit as st
 import pandas as pd
 
-st.title("🎈 Checkbox Toggle Test")
+st.title("🎈 Data Editor Test")
 #st.write(
 #    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
 #)
 
 if 'df' not in st.session_state:
-    st.session_state.df = pd.DataFrame({'id':[1,2,3], 'active':[False, False, False]})
-column_config = {'active':st.column_config.CheckboxColumn('Active Status', disabled=st.session_state.df['active'].tolist())}
+    st.session_state.df = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42], 'status':[False, False, False]})
+if 'edit_index' not in st.session_state:
+    st.session_state.edit_index = None
 
-st.write("**Before Edit:**", st.session_state.df['active'].tolist())
-edited_df = st.data_editor(st.session_state.df, column_config = column_config, key = "unique_editor_key", use_container_width = True)
+for index, row in st.session_state.df.iterrows():
+    cols = st.columns([3, 2, 3, 2])
+    cols[0].write(row['Name'])
+    cols[1].write(row['Age'])
+    cols[2].write(row['status'])
+    if cols[3].button('Edit', key=f"edit_{index}"):
+        st.session_state.edit_index = index
 
-if not edited_df.equals(st.session_state.df):
-    st.session_state.df = edited_df
-    st.rerun()
-
-st.write("**After Edit:**", st.session_state.df['active'].tolist())
+#Edit Form
