@@ -8,7 +8,7 @@ st.title("🎈 Checkbox Toggle Test")
 
 if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame({'id':[1,2,3], 'active':[False, False, False]})
-column_config = {'active':st.column_config.CheckboxColumn('Active Status', disables=st.session_state.df['active'].tolist())}
+column_config = {'active':st.column_config.CheckboxColumn('Active Status', disabled=st.session_state.df['active'].tolist())}
 
 st.write("**Before Edit:**", st.session_state.df['active'].tolist())
 edited_df = st.data_editor(st.session_state.df, column_config = column_config, key = "unique_editor_key", use_container_width = True)
