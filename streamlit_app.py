@@ -20,3 +20,12 @@ for index, row in st.session_state.df.iterrows():
         st.session_state.edit_index = index
 
 #Edit Form
+if st.session_state.edit_index is not None:
+    index = st.session_state.edit_index
+    row = st.session_state.df.loc[index]
+    with st.form(key='edit_form'):
+        st.header("Edit Entry")
+        name = st.text_input("Name", value = row['Name'])
+        age = st.number_input("Age", value = row['Age'])
+
+        col1, col2 = st.columns(2)
