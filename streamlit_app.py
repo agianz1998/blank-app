@@ -11,9 +11,9 @@ st.markdown("""
     .data-table {
         border: 1px solid #ddd;
         border-collapse: collapse;
-        width:100%;
+        width: 100%;
     }
-    .data-table td, .data_table th {
+    .data-table td, .data-table th {
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
