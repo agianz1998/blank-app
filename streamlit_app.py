@@ -35,7 +35,7 @@ if st.session_state.edit_index is not None:
         if col1.form_submit_button('Save'):
             st.session_state.df.at[index, 'Name'] = name
             st.session_state.df.at[index, 'age'] = age
-             st.session_state.df.at[index, 'status'] = status
+            st.session_state.df.at[index, 'status'] = status
             st.session_state.edit_index = None
             st.rerun()
 
