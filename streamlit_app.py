@@ -29,3 +29,17 @@ if st.session_state.edit_index is not None:
         age = st.number_input("Age", value = row['Age'])
 
         col1, col2 = st.columns(2)
+        if col1.form_submit_button('Save'):
+            st.session_state.df.at[index, 'Name'] = name
+            st.session_state.df.at[index, 'age'] = age
+            st.session_state.edit_index = None
+            st.experimental_rerun()
+
+        if col2.form_submit_button('Cancel'):
+            st.session_state.edit_index = None
+            st.experimental_rerun()
+
+st.divider()
+st.header("Currrent Data")
+st.dataframe(st.session_state.df, use_container_width = True)
+            
