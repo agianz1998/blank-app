@@ -8,20 +8,20 @@ st.title("🎈 Data Editor Test")
 
 st.markdown("""
 <style>
-    .data_table {
+    .data-table {
         border: 1px solid #ddd;
         border-collapse: collapse;
         width:100%;
     }
-    .data_table td, .data_table th {
+    .data-table td, .data_table th {
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
     }
-    .data_table th {
+    .data-table th {
         background-color: #f2f2f2;
     }
-    .data_table tr:hover {
+    .data-table tr:hover {
         background-color: #f5f5f5;
     }
 </style>
