@@ -13,7 +13,8 @@ data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42],'Act
 
 edited_data = st.data_editor(data,num_rows="dynamic")
 
-
+for index, row in edited_data.iterrows():
+    col1, col2, col3, col4 = st.columns([2,2,2,1])
 ############################################################################
 #if 'df' not in st.session_state:
 #    st.session_state.df = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42], 'City':['New York', 'London', 'Paris'], 'Active':[False, False, False], 'Actions':['Edit'] * 3})
