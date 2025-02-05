@@ -12,17 +12,26 @@ if 'selected_row' not in st.session_state:
 
 data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42],'Active':[False, False, False]})
 
-st.write("##### User Data (Grid View) #####")
-
-num_columns = 3
-columns = st.columns(num_columns)
-
-for i, (index, row) in enumerate(data.iterrows()):
-    with columns[i % num_columns]:
-        st.write(f"**{row['Name']}**")
-        st.write(f"Age: {row['Age']}")
-        st.write("Active" if row['Active'] else "Inactive")
-                 
+st.markdown("""
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .edit-btn {
+        text-align: center;
+    }
+</style>
+""", unsafe_allow_html=True)
+        
                       
         
     
