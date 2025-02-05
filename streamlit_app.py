@@ -6,66 +6,75 @@ st.title("🎈 Data Editor Test")
 #    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
 #)
 
-if 'df' not in st.session_state:
-    st.session_state.df = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42], 'City':['New York', 'London', 'Paris'], 'Active':[False, False, False], 'Actions':['Edit'] * 3})
-if 'edit_index' not in st.session_state:
-    st.session_state.edit_index = None
+if 'selected_row' not in st.session_state:
+    st.session_state.selected_row = None
 
-edited_data = st.data_editor(st.session_state.df, 
-                             column_config = {
-                                 "Actions": {
-                                     "width": "small",
-                                     "help": "Click to edit this row",
-                                     "disabled": False
-                                 },
-                                 "Active":{
-                                     "help": "Account Status",
-                                     "disabled":True
-                                 }
-                             },
-                             hide_index = True,
-                             use_container_width = True,
-                             key = "main_editor"
-                            )
+data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42],'Active':[False, False, False], 'Actions':['Edit'] * 3})
 
-if st.session_state.get("main_editor") is not None:
-    for index, row in st.session_state.df.iterrows():
-        if "Edit" in st.session_state.main_editor["edited_rows"].get(str(index),{}).values():
-            st.session_state.edit_index = index
-            break
+edited_data = st.data_editor(data,num_rows=dynamic)
 
-if st.session_state.edit_index is not None:
-    index = st.session_state.edit_index
-    row = st.session_state.df.loc[index]
-    with st.form(key='edit_form'):
-        st.subheader(f"Editing Row {index + 1}")
-        col1, col2 = st.columns(2)
 
-        with col1:
-            name = st.text_input("Name", value = row['Name'])
-            city = st.text_input("City", value = row['City'])
+############################################################################
+#if 'df' not in st.session_state:
+#    st.session_state.df = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42], 'City':['New York', 'London', 'Paris'], 'Active':[False, False, False], 'Actions':['Edit'] * 3})
+#if 'edit_index' not in st.session_state:
+#    st.session_state.edit_index = None
 
-        with col2:
-            age = st.number_input("Age", value = row['Age'])
-            active = st.checkbox("Active", value = row['Active'], disabled = row['Active'])
-        save_col, cancel_col = st.columns([1,4])
-        with save_col:
-            save = st.form_submit_button("Save")
-        with cancel_col:
-            cancel = st.form_submit_button("Cancel")
+#edited_data = st.data_editor(st.session_state.df, 
+#                             column_config = {
+#                                 "Actions": {
+#                                     "width": "small",
+#                                     "help": "Click to edit this row",
+#                                     "disabled": False
+#                                 },
+#                                 "Active":{
+#                                     "help": "Account Status",
+#                                     "disabled":True
+#                                 }
+#                             },
+#                             hide_index = True,
+#                             use_container_width = True,
+#                             key = "main_editor"
+#                            )
 
-        if save:
-            st.session_state.df.at[index, 'Name'] = name
-            st.session_state.df.at[index, 'Age'] = age
-            st.session_state.df.at[index, 'City'] = city
-            if not row['Active']:
-                st.session_state.df.at[index, 'Active'] = active
-            st.session_state.edit_index = None
-            st.rerun()
+#if st.session_state.get("main_editor") is not None:
+#    for index, row in st.session_state.df.iterrows():
+#        if "Edit" in st.session_state.main_editor["edited_rows"].get(str(index),{}).values():
+#            st.session_state.edit_index = index
+#            break
 
-        if cancel:
-            st.session_state.edit_index = None
-            st.rerun()
+#if st.session_state.edit_index is not None:
+#    index = st.session_state.edit_index
+#    row = st.session_state.df.loc[index]
+#    with st.form(key='edit_form'):
+#        st.subheader(f"Editing Row {index + 1}")
+#        col1, col2 = st.columns(2)
+
+#        with col1:
+#            name = st.text_input("Name", value = row['Name'])
+#            city = st.text_input("City", value = row['City'])
+
+#        with col2:
+#            age = st.number_input("Age", value = row['Age'])
+#            active = st.checkbox("Active", value = row['Active'], disabled = row['Active'])
+#        save_col, cancel_col = st.columns([1,4])
+#        with save_col:
+#            save = st.form_submit_button("Save")
+#        with cancel_col:
+#            cancel = st.form_submit_button("Cancel")
+
+#        if save:
+#            st.session_state.df.at[index, 'Name'] = name
+#            st.session_state.df.at[index, 'Age'] = age
+#            st.session_state.df.at[index, 'City'] = city
+#            if not row['Active']:
+#                st.session_state.df.at[index, 'Active'] = active
+#            st.session_state.edit_index = None
+#            st.rerun()
+
+#        if cancel:
+#            st.session_state.edit_index = None
+#            st.rerun()
             
 
     
