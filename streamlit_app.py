@@ -12,19 +12,18 @@ if 'selected_row' not in st.session_state:
 
 data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42],'Active':[False, False, False]})
 
-edited_data = st.data_editor(data,num_rows="dynamic")
+st.write("##### User Data (Grid View) #####")
 
-for index, row in edited_data.iterrows():
-    col1, col2, col3, col4 = st.columns([2,2,2,1])
-    with col1:
-        st.write(row["Name"])
-    with col2:
-        st.write(row["Age"])
-    with col3:
-        st.write("Active" if row["Active"] else "Inactive")
-    with col4:
-        if st.button("Edit", key = f"edit_{index}"):
-            st.session_state.selected_row = index
+num_columns = 3
+columns = st.columns(num_columns)
+
+for i, (index, row) in enumerate(data.iterrows()):
+    with columns[i % num_columns]:
+        st.write(f"**{row['Name']}**")
+        st.write(f"Age: {row['Age']}")
+        st.write("Active" if row['Active'] else "Inactive")
+                 
+                      
         
     
 ############################################################################
