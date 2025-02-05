@@ -50,7 +50,10 @@ for index, row in data.iterrows():
                         <td class = 'edit-btn'><button onclick="document.getElementById('edit_{index}').click()">Edit</button></td>
                     </tr>
                 """
-    
+    if st.button(f"Edit Row {index}", key = f"edit_{index}"):
+        st.session_state.selected_row = index
+table_html+="</table>"
+st.markdown(table_html, unsafe_allow_html=True)
 ############################################################################
 #if 'df' not in st.session_state:
 #    st.session_state.df = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42], 'City':['New York', 'London', 'Paris'], 'Active':[False, False, False], 'Actions':['Edit'] * 3})
