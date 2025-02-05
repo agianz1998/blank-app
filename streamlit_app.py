@@ -32,7 +32,14 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
         
-                      
+table_html = """
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th class='edit-btn'>Edit</th>
+    </tr>
+"""
         
     
 ############################################################################
