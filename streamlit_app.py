@@ -9,7 +9,7 @@ st.title("🎈 Data Editor Test")
 if 'selected_row' not in st.session_state:
     st.session_state.selected_row = None
 
-data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42],'Active':[False, False, False], 'Actions':['Edit'] * 3})
+data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42],'Active':[False, False, False]})
 
 edited_data = st.data_editor(data,num_rows="dynamic")
 
