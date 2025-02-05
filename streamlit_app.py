@@ -11,7 +11,7 @@ if 'selected_row' not in st.session_state:
 
 data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42],'Active':[False, False, False], 'Actions':['Edit'] * 3})
 
-edited_data = st.data_editor(data,num_rows=dynamic)
+edited_data = st.data_editor(data,num_rows="dynamic")
 
 
 ############################################################################
