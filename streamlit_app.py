@@ -40,7 +40,16 @@ table_html = """
         <th class='edit-btn'>Edit</th>
     </tr>
 """
-        
+for index, row in data.iterrows():
+    active_status = "Active" if row['Active'] else "Inactive"
+    table_html += f"""
+                    <tr>
+                        <td>row['Name']</td>
+                        <td>row['Age']</td>
+                        <td>{active_status}</td>
+                        <td class = 'edit-btn'><button onclick="document.getElementById('edit_{index}').click()">Edit</button></td>
+                    </tr>
+                """
     
 ############################################################################
 #if 'df' not in st.session_state:
