@@ -30,7 +30,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.write("User Data Table:")
-table_html = """
+#table_html = """
+st.markdown("""
 <table class ="styled-table">
     <tr>
         <th>Name</th>
@@ -38,25 +39,32 @@ table_html = """
         <th>Active Status</th>
         <th>Edit</th>
     </tr>
-"""
+""", unsafe_allow_html=True)
 
 for index, row in data.iterrows():
     active_status = "Active" if row["Active"] == "Y" else "Inactive"
-    table_html += f"""
-    <tr>
-        <td>{row['Name']}</td>
-        <td>{row['City']}</td>
-        <td>{active_status}</td>
-        <td><b>[ Edit Row {index} ]</b></td>
-    </tr>
-    """
-table_html += "</table>"
-
-st.markdown(table_html, unsafe_allow_html=True)
-
-for index, row in data.iterrows():
-    if st.button(f"Edit Row {index}", key=f"edit_{index}"):
+    col1, col2, col3, col4 = st.columns([3, 3, 3, 1])
+    with col1:
+        st.write(row['Name'])
+    with col4:
+        if st.button(f"Edit Row {index}", key=f"edit_{index}"):
         st.session_state.selected_row = index
+                
+#    table_html += f"""
+#    <tr>
+#        <td>{row['Name']}</td>
+#        <td>{row['City']}</td>
+#        <td>{active_status}</td>
+#        <td><b>[ Edit Row {index} ]</b></td>
+#    </tr>
+#    """
+#table_html += "</table>"
+
+#st.markdown(table_html, unsafe_allow_html=True)
+
+#for index, row in data.iterrows():
+#    if st.button(f"Edit Row {index}", key=f"edit_{index}"):
+#        st.session_state.selected_row = index
 
         
 
