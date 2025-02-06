@@ -17,7 +17,7 @@ edited_df = st.data_editor(data,
                                "Active":st.column_config.SelectboxColumn(
                                    label="Status",
                                    options=['Y', 'N'],
-                                   disabled == data["Active"]
+                                   disabled = data["Active"]
                                )
                            },
                            key="data_editor"
