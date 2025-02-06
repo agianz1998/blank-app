@@ -48,7 +48,7 @@ for index, row in data.iterrows():
         st.write(row['Name'])
     with col4:
         if st.button(f"Edit Row {index}", key=f"edit_{index}"):
-        st.session_state.selected_row = index
+            st.session_state.selected_row = index
                 
 #    table_html += f"""
 #    <tr>
