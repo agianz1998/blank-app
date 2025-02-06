@@ -22,8 +22,8 @@ edited_df = st.data_editor(data,
                            },
                            key="data_editor"
                           )
-st.write("Edited Dataframe:")
-st.write(edited_df)
+#st.write("Edited Dataframe:")
+#st.write(edited_df)
 
 
 
