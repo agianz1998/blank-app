@@ -18,9 +18,6 @@ edited_df = st.data_editor(data,
                                    label="Status",
                                    options=['Y', 'N']
                                )
-                           }
-                                   
-
                            },
                            key="data_editor"
                           )
