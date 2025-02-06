@@ -14,11 +14,10 @@ data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'City':['Chicago', 'Bos
 
 edited_df = st.data_editor(data,
                            column_config = {
-                               "Active":{
-                                   "type":"categorical",
-                                   "options":["Y","N"],
-#                                   "disabled":data["Active"] == "Y"
-                               }
+                               "Active":st.column_config.SelectboxColumn(
+                                   label="Status",
+                                   options=['Y', 'N']
+
                            },
                            key="data_editor"
                           )
