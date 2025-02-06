@@ -55,7 +55,7 @@ table_html += "</table>"
 st.markdown(table_html, unsafe_allow_html=True)
 
 for index, row in data.iterrows():
-    if st.button(f"Edit Row {Index}", key=f"edit_{index}"):
+    if st.button(f"Edit Row {index}", key=f"edit_{index}"):
         st.session_state.selected_row = index
 
         
