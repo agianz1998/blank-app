@@ -17,7 +17,8 @@ option_per_row = [["Y"] if status == "Y" else ["Y","N"] for status in data["Acti
 column_config = {
     "Active":st.column_config.SelectboxColumn(
         "Active",
-        options=["Y", "N"]
+        options=["Y", "N"],
+        disabled=True
     )
 }
 
