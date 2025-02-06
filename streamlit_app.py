@@ -12,59 +12,20 @@ if 'selected_row' not in st.session_state:
 
 data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'City':['Chicago', 'Boston', 'Dallas'],'Active':['N', 'N', 'Y']})
 
-st.markdown("""
-<style>
-    .styled-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .styled-table th, .styled-table td {
-        border: 1px solid black;
-        padding: 10px;
-        test-align: left;
-    }
-    .styled-table th {
-        background-color: #f2f2f2;
-    }
-</style>
-""", unsafe_allow_html=True)
+option_per_row = [["Y"] if status == "Y" else ["Y","N"] for status in data["Active"]]
 
-st.write("User Data Table:")
-#table_html = """
-st.markdown("""
-<table class ="styled-table">
-    <tr>
-        <th>Name</th>
-        <th>City</th>
-        <th>Active Status</th>
-        <th>Edit</th>
-    </tr>
-""", unsafe_allow_html=True)
+column_config = {
+    "Active":st.column_config.SelectboxColumn(
+        "Active",
+        options:["Y", "N"]
+    )
+}
 
-for index, row in data.iterrows():
-    active_status = "Active" if row["Active"] == "Y" else "Inactive"
-    col1, col2, col3, col4 = st.columns([3, 3, 3, 1])
-    with col1:
-        st.write(row['Name'])
-    with col4:
-        if st.button(f"Edit Row {index}", key=f"edit_{index}"):
-            st.session_state.selected_row = index
-                
-#    table_html += f"""
-#    <tr>
-#        <td>{row['Name']}</td>
-#        <td>{row['City']}</td>
-#        <td>{active_status}</td>
-#        <td><b>[ Edit Row {index} ]</b></td>
-#    </tr>
-#    """
-#table_html += "</table>"
+edited_data = st.data_editor(data, column_config = column_config, disabled = ['Name', 'City'])
 
-#st.markdown(table_html, unsafe_allow_html=True)
-
-#for index, row in data.iterrows():
-#    if st.button(f"Edit Row {index}", key=f"edit_{index}"):
-#        st.session_state.selected_row = index
+for index, row in edited_data.iterrows():
+    if data.at[index, "Active"] == "Y":
+        edited_data.at[index, "Active"] = "Y"
 
         
 
