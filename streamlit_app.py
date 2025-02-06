@@ -52,7 +52,7 @@ for index, row in data.iterrows():
     """
 table_html += "</table>"
 
-st.markdown(table_htnl, unsafe_allow_html=True)
+st.markdown(table_html, unsafe_allow_html=True)
 
 for index, row in data.iterrows():
     if st.button(f"Edit Row {Index}", key=f"edit_{index}"):
