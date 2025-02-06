@@ -10,50 +10,23 @@ st.title("🎈 Data Editor Test")
 if 'selected_row' not in st.session_state:
     st.session_state.selected_row = None
 
-data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42],'Active':[False, False, False]})
+data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'City':['Chicago', 'Boston', 'Dallas'],'Active':['N', 'N', 'Y']})
 
-st.markdown("""
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 10px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .edit-btn {
-        text-align: center;
-    }
-</style>
-""", unsafe_allow_html=True)
-        
-table_html = """
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th class='edit-btn'>Edit</th>
-    </tr>
-"""
-for index, row in data.iterrows():
-    active_status = "Active" if row['Active'] else "Inactive"
-    table_html += f"""
-                    <tr>
-                        <td>row['Name']</td>
-                        <td>row['Age']</td>
-                        <td>{active_status}</td>
-                        <td class = 'edit-btn'><button onclick="document.getElementById('edit_{index}').click()">Edit</button></td>
-                    </tr>
-                """
-    if st.button(f"Edit Row {index}", key = f"edit_{index}"):
-        st.session_state.selected_row = index
-table_html+="</table>"
-st.markdown(table_html, unsafe_allow_html=True)
+edited_df = st.data_editor(df,
+                           column_config = {
+                               "Active":{
+                                   "type":"categorical",
+                                   "options":["Y","N"],
+                                   "disabled":df["Active"] == "Y"
+                               }
+                           },
+                           key="data_editor"
+                          )
+st.write("Edited Dataframe:")
+st.write(edited_df)
+
+
+
 ############################################################################
 #if 'df' not in st.session_state:
 #    st.session_state.df = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'Age':[20, 35, 42], 'City':['New York', 'London', 'Paris'], 'Active':[False, False, False], 'Actions':['Edit'] * 3})
