@@ -13,13 +13,13 @@ if 'selected_row' not in st.session_state:
 data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'City':['Chicago', 'Boston', 'Dallas'],'Active':['N', 'N', 'Y']})
 
 edited_df = st.data_editor(data,
-                           column_config = {
-                               "Active":{
-                                   "type":"categorical",
-                                   "options":["Y","N"],
-                                   "disabled":data["Active"] == "Y"
-                               }
-                           },
+#                           column_config = {
+#                               "Active":{
+#                                   "type":"categorical",
+#                                   "options":["Y","N"],
+#                                   "disabled":data["Active"] == "Y"
+#                               }
+#                           },
                            key="data_editor"
                           )
 st.write("Edited Dataframe:")
