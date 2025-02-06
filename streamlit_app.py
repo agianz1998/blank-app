@@ -20,6 +20,7 @@ edited_df = st.data_editor(data,
                                    
                                )
                            },
+                           disabled = data["Active"],
                            key="data_editor"
                           )
 #st.write("Edited Dataframe:")
