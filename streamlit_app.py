@@ -17,7 +17,9 @@ edited_df = st.data_editor(data,
                                "Active":st.column_config.SelectboxColumn(
                                    label="Status",
                                    options=['Y', 'N']
-                                   }
+                               )
+                           }
+                                   
 
                            },
                            key="data_editor"
