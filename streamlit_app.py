@@ -6,10 +6,10 @@ def paginate_dataframe(df, page_size):
         st.session_state.page_num = 1
 #    page_num = st.session_state.get('page_num', 1)
     page_num = st.session_state.page_num
-#    if 'next' in st.button('Next'):
-    if st.button('Next'):
+#    if 'next' in st.button('Next 10'):
+    if st.button('Next 10'):
         page_num += 1
-    if st.button('Previous'):
+    if st.button('Previous 10'):
         page_num -= 1
     st.session_state['page_num'] = page_num
     start_idx = (page_num - 1) * page_size
