@@ -1,6 +1,23 @@
 import streamlit as st
 import pandas as pd
 
+def paginate_dataframe(df, page_size):
+    page_num = st.session_state.get('page_num', 1)
+    if 'next' in st.button('Next'):
+        page_num += 1
+    elif 'prev' in st.button('Previous'):
+        page_num -= 1
+    st.session_state['page_num'] = page_num
+    start_idx = (page_num - 1) * page_size
+    end_idx = start_idx + page_size
+    return df.iloc[start_idx:end_idx]
+
+# Example usage
+#df = pd.DataFrame({'data': range(1, 1001)})
+#page_size = 10
+#paged_df = paginate_dataframe(df, page_size)
+#st.dataframe(paged_df)
+
 
 st.title("🎈 Data Editor Test")
 #st.write(
@@ -23,14 +40,15 @@ data = pd.DataFrame([
 name_list = data["Name"].astype(str).tolist()
 
 rows_per_page = 10
-total_pages = len(data) // rows_per_page + (1 if len(data) % rows_per_page > 0 else 0)
+#total_pages = len(data) // rows_per_page + (1 if len(data) % rows_per_page > 0 else 0)
 
-if "current_page" not in st.session_state:
-    st.session_state.current_page = 0
+#if "current_page" not in st.session_state:
+#    st.session_state.current_page = 0
 
-start_idx = st.session_state.current_page*rows_per_page
-end_idx = start_idx + rows_per_page
-paged_data = data.iloc[start_idx:end_idx]
+#start_idx = st.session_state.current_page*rows_per_page
+#end_idx = start_idx + rows_per_page
+#paged_data = data.iloc[start_idx:end_idx]
+paged_data = paginate_dataframe(data, rows_per_page)
 
 edited_data = st.data_editor(paged_data, hide_index = True, key = "data_editor", disabled = True)
 
