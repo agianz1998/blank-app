@@ -23,7 +23,7 @@ data = pd.DataFrame([
 edited_data = st.data_editor(data, hide_index = True, key = "data_editor", disabled = True)
 
 st.subheader("Select a Record to Edit:")
-selected_name = st.selectbox("Search & Select a Row", data["Name"], index=st.session_state.selected_index)
+selected_name = st.selectbox("Search & Select a Row", data["Name"].astype(str).tolist(), index=st.session_state.selected_index)
 
 st.session_state.selected_index = data[data["Name"] == selected_name].index[0]
 selected_index = st.session_state.selected_index
