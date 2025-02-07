@@ -21,7 +21,18 @@ data = pd.DataFrame([
 ])
 
 name_list = data["Name"].astype(str).tolist()
-edited_data = st.data_editor(data, hide_index = True, key = "data_editor", disabled = True)
+
+rows_per_page = 10
+total_pages = len(data) // rows_per_page + (1 if len(data) % rows_per_page > 0 else 0)
+
+if "current_page" not in st.session_state:
+    st.session_state.current_page = 0
+
+start_idx = st.session_state.current_page*rows_per_page
+end_idx = start_idx + rows_per_page
+paged_data = data.iloc[start_idx:end_idx]
+
+edited_data = st.data_editor(paged_data, hide_index = True, key = "data_editor", disabled = True)
 
 st.subheader("Select a Record to Edit:")
 selected_name = st.selectbox("Search & Select a Row", name_list , index=0)
