@@ -2,7 +2,10 @@ import streamlit as st
 import pandas as pd
 
 def paginate_dataframe(df, page_size):
-    page_num = st.session_state.get('page_num', 1)
+    if 'page_num' not in st.session_state:
+        st.session_state.page_num = 1
+#    page_num = st.session_state.get('page_num', 1)
+    page_num = st.session_state.page_num
     if 'next' in st.button('Next'):
         page_num += 1
     elif 'prev' in st.button('Previous'):
