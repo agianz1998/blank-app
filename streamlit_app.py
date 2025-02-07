@@ -29,8 +29,8 @@ st.session_state.selected_index = data[data["Name"] == selected_name].index[0]
 selected_index = st.session_state.selected_index
 
 with st.form("edit form"):
-    selected_name = st.text_input("Name", value=data.[iloc[selected_index]["Name"])
-    selected_city = st.text_input("City", value=data.[iloc[selected_index]["City"])
+    selected_name = st.text_input("Name", value=data.iloc[selected_index]["Name"])
+    selected_city = st.text_input("City", value=data.iloc[selected_index]["City"])
     selected_status = st.selectbox("Active Status", ["Y","N"], index=["Y", "N"].index(data.iloc[selected_index]["Active_Status"]))
     submitted = st.form_submit_button("Save")
         
