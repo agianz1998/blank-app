@@ -10,23 +10,18 @@ st.title("🎈 Data Editor Test")
 if 'selected_row' not in st.session_state:
     st.session_state.selected_row = None
 
-data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'City':['Chicago', 'Boston', 'Dallas'],'Active':['N', 'N', 'Y']})
+if 'selected_index' not in st.session_state:
+    st.session_state.selected_index = 0
 
-option_per_row = [["Y"] if status == "Y" else ["Y","N"] for status in data["Active"]]
+#data = pd.DataFrame({'Name':['Alice', 'Bob', 'Charlie'], 'City':['Chicago', 'Boston', 'Dallas'],'Active':['N', 'N', 'Y']})
 
-column_config = {
-    "Active":st.column_config.SelectboxColumn(
-        "Active",
-        options=["Y", "N"],
-        disabled=True
-    )
-}
+data = pd.DataFrame([
+    {"Name":f"User {i}", "City": f"City {i}", "Active_Status": "Y" if i % 2 == 0 else "N"}
+    for i in range(1, 101)
+])
 
-edited_data = st.data_editor(data, column_config = column_config, disabled = ['Name', 'City'])
+edited_data = st.data_editor(data, hide_index = True, key = "data_editor", disabled = True)
 
-for index, row in edited_data.iterrows():
-    if data.at[index, "Active"] == "Y":
-        edited_data.at[index, "Active"] = "Y"
 
         
 
